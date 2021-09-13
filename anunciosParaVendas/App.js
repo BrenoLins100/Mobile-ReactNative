@@ -1,13 +1,44 @@
 import React, {Component} from 'react';
 import {View, Text, ScrollView, Image} from 'react-native';
 import {styles} from './src/styles';
+import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
 
 class App extends Component {
+
+  state = {
+    fontsLoaded: false,
+  };
+
+  async loadFonts() {
+    await Font.loadAsync({
+      // Load a font `Montserrat` from a static resource
+      Urbanist: require('./src/assets/fonts/Urbanist-Regular.ttf'),
+
+      // Any string can be used as the fontFamily name. Here we use an object to provide more control
+      'Urbanist-Bold': {
+        uri: require('./src/assets/fonts/Urbanist-Bold.ttf'),
+        display: Font.FontDisplay.FALLBACK,
+      },
+    });
+    this.setState({ fontsLoaded: true });
+  }
+
+  componentDidMount() {
+    this.loadFonts();
+  }
+
+
   render() {
+
+    if (this.state.fontsLoaded) {
+
     return(
+
+      
       <View style={styles.container}>
 
-        <Text style={{fontSize: 40, color: '#f1c40f', textAlign: 'center'}} >Anúncios</Text>
+        <Text style={{fontSize: 40, color: '#222', textAlign: 'center', fontFamily: 'Urbanist'}} >Anúncios</Text>
 
         <ScrollView horizontal={true} >
 
@@ -24,7 +55,7 @@ class App extends Component {
           <View style={styles.anuncio}>
 
             <View style={styles.imagem} >
-              <Image style={{width: 200, height:100}} source={require('./src/rtx.png')} ></Image>
+              <Image style={{width: 100, height: 100, resizeMode: 'contain'}} source={require('./src/rtx.png')} ></Image>
             </View>
             
             <Text style={styles.titulo} >RTX 3090</Text>
@@ -64,6 +95,11 @@ class App extends Component {
         </ScrollView>
       </View>
     );
+
+    } else {
+      return null;
+    }
+
   }
 }
 

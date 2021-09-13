@@ -1,25 +1,24 @@
 import {StyleSheet} from 'react-native';
 
-let cor = '#bdc3c7';
 
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#222',
+        backgroundColor: '#ebeaef',
         padding:20,
-        fontWeight: 'bold'
-
+        fontWeight: 'bold',
     },
     anuncio:{
         margin: 10,
-        width: 220,
-        height:210,
+        width: 200,
+        height: 230,
         display: 'flex',
         flexDirection: 'column',
-        padding: 3,
+        padding: 10,
+        backgroundColor: '#fff',
+        borderRadius: 5
     },
     imagem:{
-        backgroundColor: cor,
         padding: 10,
         display: 'flex',
         alignItems: 'center',
@@ -27,13 +26,18 @@ const styles = StyleSheet.create({
     },
     titulo:{
         marginTop: 20,
-        color: '#f39c12',
-        fontSize: 18,  
+        color: '#222',
+        fontSize: 18,
+        fontFamily: 'Urbanist',
+        marginLeft: 10 
      },
     preco:{
-        color: '#919191',
-        fontSize: 14,
-        marginTop: 20
+        color: '#131313',
+        fontSize: 14.5,
+        marginTop: 20,
+        fontFamily: 'Urbanist-Bold',
+        marginLeft: 10   
+
     }
 })
 
