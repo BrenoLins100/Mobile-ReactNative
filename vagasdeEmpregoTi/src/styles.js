@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#c7ecee',
+        alignItems: 'center',
     },
     vaga:{
         width: 300,
