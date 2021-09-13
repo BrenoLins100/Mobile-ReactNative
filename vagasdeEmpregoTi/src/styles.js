@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#c7ecee',
     },
     vaga:{
-        with: 300,
+        width: 300,
         backgroundColor: '#fff',
         margin: 5,
         borderRadius: 3,
