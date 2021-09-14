@@ -6,17 +6,24 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      numero: 0
+      usuario: 0,
+      resultado: '',
     }
 
-
+    this.inputUsuario  = React.createRef();
     this.numeroAleatorio = this.numeroAleatorio.bind(this);
   }
 
 
   numeroAleatorio(){
     let geraNumero = Math.floor(Math.random()*10)
-    this.setState({numero: geraNumero});
+    
+    if(geraNumero === this.state.usuario){
+      this.setState({resultado: 'Você Acertou'});
+    }else{
+      this.setState({resultado: 'Você errou ): tente denovo'});
+      this.inputUsuario.current.clear();
+    }
   }
 
   render() {
@@ -29,19 +36,19 @@ class App extends Component{
 
             <Text style={styles.texto} >Jogo do Número Aleatório</Text>
 
-            <View style={styles.container2}>
-              <Image source={require('./src/Charada.png')} ></Image>
-            </View>
+           
 
             <Text style={styles.texto} >Pense em um número de 0 a 10</Text>
 
-            <TextInput style={styles.input} >
-              {this.state.numero}
+            <TextInput ref={this.inputUsuario} onTextChange={(valor)=> this.setState({usuario: valor})} style={styles.input} >
+              {this.state.usuario}
             </TextInput>
 
             <TouchableOpacity style={styles.botao}  onPress={this.numeroAleatorio}>
               <Text style={{fontWeight: '600'}} >Descobrir</Text>
             </TouchableOpacity>
+
+            <Text style={styles.texto} >{this.state.resultado}</Text>
 
           </View>
 
