@@ -17,13 +17,13 @@ export default function Home(){
     }else{
       status = "Sim"
     }
-      navigation.navigate('Sobre', { nome: pegaNome, idade: pegaIdade, sexo: pegaSexo, escolaridade: pegaEsco, limite: pegaLimite, nacionalidade: status });
+      navigation.navigate('Dados', { nome: pegaNome, idade: pegaIdade, sexo: pegaSexo, escolaridade: pegaEsco, limite: pegaLimite, nacionalidade: status });
   }
  
   const [pegaNome, setaNome] = React.useState("");
-  const [pegaIdade, setaIdade] = React.useState("");
-  const [pegaSexo, setaSexo] = useState(0);
-  const [pegaEsco, setaEsco] = useState(0);
+  const [pegaIdade, setaIdade] = React.useState(0);
+  const [pegaSexo, setaSexo] = useState("");
+  const [pegaEsco, setaEsco] = useState("");
   const [pegaLimite, setaLimite] = useState(0);
   const [pegaNac, setaNac] = useState(0);
 
