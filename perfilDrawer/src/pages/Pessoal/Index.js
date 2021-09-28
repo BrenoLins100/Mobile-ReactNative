@@ -23,6 +23,7 @@ export default function Pessoal(){
             <Text style={styles.texto} >Pessoal</Text>
           </View>
           <View>
+            <Text style={styles.info} >Nome completo: Breno Lins Arbeche</Text>
             <Text style={styles.info} >Cidade: Mongaguá</Text>
             <Text style={styles.info} >Faculdade: FATEC Rubens Lara</Text>
             <Text style={styles.info} >RA: 0050831911003</Text>
