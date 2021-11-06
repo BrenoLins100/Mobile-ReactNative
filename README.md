@@ -1,9 +1,9 @@
 # Mobile-ReactNative
-Repositório criado para as aplicações feitas nas aulas de Dispositivos Móveis 2
+# Repositório criado para as aplicações feitas nas aulas de Dispositivos Móveis 2
 
-#Lista de Exercicíos
+## Lista de Exercicíos
 
-#Links para os Apps
+### Links para os Apps
 
 [App 21:](https://github.com/BrenoLins100/Mobile-ReactNative/tree/main/appCadastroTarefas)<br />
 [App 20:](https://github.com/BrenoLins100/Mobile-ReactNative/tree/main/apiAppFilmes)<br />
