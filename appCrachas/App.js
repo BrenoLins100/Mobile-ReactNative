@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   Modal,
   Image,
+  TextInput,
 } from "react-native";
 
 import { Camera } from "expo-camera";
@@ -36,6 +37,13 @@ export default function App() {
   const [imagemAlbum, setImagemAlbum] = useState(null);
 
   const [abrir, setAbrir] = useState(false);
+
+  //modal dados
+  const [abrir2, setAbrir2] = useState(false);
+
+  const [nome,setNome] = useState("");
+
+  const [area,setArea] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -103,9 +111,21 @@ export default function App() {
     }
   };
 
+  const salvarDados = () => {
+    setAbrir2(true);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Camera style={{ flex: 1 }} type={type} ref={camRef}>
+
+      <View>
+       <View style={styles.dados} >
+         <Text style={styles.texto} >Criação de Crachás</Text>
+       </View>
+      </View>
+
+      <View style={{alignItems: 'center'}} >
+      <Camera style={{ width: 200, height:200}} type={type} ref={camRef}>
         <View
           style={{
             flex: 1,
@@ -128,18 +148,11 @@ export default function App() {
               );
             }}
           >
-            <Text style={{ color: "#fff", fontSize: 25 }}>Girar</Text>
-          </TouchableOpacity>
+            
+          
+            <FontAwesome name="refresh" size={50} color="#fff" />
+        
 
-          <TouchableOpacity
-            style={{
-              position: "absolute",
-              bottom: 50,
-              left: 20,
-            }}
-            onPress={acessarAlbum}
-          >
-            <Text style={{ color: "#fff", fontSize: 25 }}>Album</Text>
           </TouchableOpacity>
 
           {imagemAlbum && (
@@ -150,10 +163,22 @@ export default function App() {
           )}
         </View>
       </Camera>
+      </View>
+
+      <View style={{flexDirection: "row"}} >
 
       <TouchableOpacity style={styles.botao} onPress={tirarFoto}>
         <FontAwesome name="camera" size={23} color="#fff" />
       </TouchableOpacity>
+
+      
+      <TouchableOpacity  style={styles.botao}
+            onPress={acessarAlbum}
+          >
+            <Text style={{ color: "#fff", fontSize: 25 }}>Album</Text>
+          </TouchableOpacity>
+
+      </View>
 
       {fotoTirada && (
         <Modal animationType="slide" transparent={false} visible={abrir}>
@@ -186,6 +211,72 @@ export default function App() {
           </View>
         </Modal>
       )}
+
+
+
+      <View style={styles.entrada} >
+        <Text style={styles.place} >Nome:</Text>
+        <TextInput style={styles.inputTexto}  onChangeText={(x)=>{setNome(x)}}  />
+      </View>
+
+      <View style={styles.entrada}>
+        <Text style={styles.place}>Área:</Text>
+        <TextInput style={styles.inputTexto} onChangeText={(x)=>{setArea(x)}}  />
+      </View>
+
+      <View>
+        <TouchableOpacity style={styles.btnSalvar} onPress={salvarDados} >
+          <Text style={{color:'#fff'}} >Salvar</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Modal animationType="slide" transparent={false} visible={abrir2}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              margin: 20,
+            }}
+          >
+            <View style={{ margin: 10, flex: 1, flexDirection: "column" }}>
+
+              <View>
+              <Text>Dados cadastrados: </Text>
+
+              <Image
+              style={{ width: 300, height: 300, borderRadius: 20 }}
+              source={{ uri: fotoTirada }}
+            />
+
+                <Text>Nome:{nome}</Text>
+                <Text>Área:{area}</Text>
+
+
+
+             </View>
+
+             <View style={{flex: 1, flex: 1, flexDirection: "row"}} >
+             <TouchableOpacity
+                style={{ margin: 10 }}
+                onPress={() => {
+                  setAbrir2(false);
+                }}
+              >
+                <FontAwesome name="window-close" size={50} color="red" />
+              </TouchableOpacity>
+              
+              <TouchableOpacity style={{ margin: 10 }} onPress={()=>{alert('Dados cadastrados!')}}>
+                <FontAwesome name="upload" size={50} color="#121212" />
+              </TouchableOpacity>
+             </View>
+              
+
+            </View>
+
+           
+          </View>
+        </Modal>
+      
     </SafeAreaView>
   );
 }
@@ -193,7 +284,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+  },
+  dados:{
+    marginTop: 60,
+    padding: 30
+  },
+  texto:{
+    textAlign: "center",
+    fontSize: 25
   },
   botao: {
     justifyContent: "center",
@@ -202,5 +300,30 @@ const styles = StyleSheet.create({
     margin: 20,
     height: 50,
     borderRadius: 10,
+    flex: 1
   },
+  entrada:{
+    flexDirection: "row",
+    alignItems: 'center',
+    paddingLeft: 30,
+    paddingTop: 10
+  },
+  place:{
+    flex: 1
+  },
+  inputTexto:{
+    borderWidth: 2,
+    borderColor: "#121212",
+    flex: 7,
+    margin: 10,
+    borderRadius: 3 
+  },
+  btnSalvar:{
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#121212",
+    borderRadius: 3,
+    margin: 5,
+    padding: 10,
+  }
 });
